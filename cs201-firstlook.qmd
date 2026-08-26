@@ -40,15 +40,68 @@ I don't recommend rearranging your pane layout at this time.
 
 Try running some code
 
+Load Library
+
 ```{r}
 
+library(tidyverse)
+```
 
+Some scripting
+
+```{r}
+#This is how to assign value to name
+quiz1 <- 88
+quiz2 <- 94
+quiz3 <- 79
+
+#Averageing
+(quiz1 + quiz2 + quiz3) / 3
+
+#ex
+mean(quiz1 + quiz2 + quiz3)
+mean(quiz1, quiz2, quiz3)
+
+#in mean EX will take first syntax argument
+mean(c(quiz1, quiz2, quiz3))
+
+list <- (c(quiz1, quiz2, quiz3))
+
+average <- mean(list)
+
+quiz3 <- 99
+quiz3
+
+list <- (c(quiz1, quiz2, quiz3))
+average <- mean(list)
+average
+round(average, 2)
+```
+
+More scores
+
+```{r}
+scores <- c(88, 94, 78, 91, 85)
+scores
+
+mean(scores)
+min(scores)
+max(scores)
+list(scores)
+
+summary(scores)
+
+students <- c("a", "b", "c", "d", "e")
+students
+
+# Bar plot
+barplot(scores, names.arg = students)
 ```
 
 ## Introducing `ggplot2`
 
 ```{r}
-
+library(ggplot2)
 ```
 
 ## Extra Credit (1pt)
