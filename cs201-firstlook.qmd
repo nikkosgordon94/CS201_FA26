@@ -1,6 +1,6 @@
 ---
 title: "CS-201 First Look at R"
-author: "Amber Camp"
+author: "Nikkos Miyasato"
 date: 8/26/26
 format: html
 editor: visual
