@@ -153,6 +153,18 @@ ggplot(data = grades_df, aes(x = student, y = score)) +
          subtitle = "some quiz scores",
          x = "the students",
          y = "what did they score on their quiz")
+
+ggplot(data = grades_df, aes(x = student, y = score)) + 
+  geom_col(aes(fill = student)) +
+  scale_fill_manual(values = c(
+    "a" = "red",
+    "b" = "blue",
+    "c" = "green",
+    "d" = "purple",
+    "e" = "orange"
+  )) +
+  theme_minimal()
+#This is how you can add color depth by assigning color to individual values
 ```
 
 Mutate the dataframe
@@ -196,6 +208,7 @@ quiz1 + quiz2
 
 0.1 + 0.1 + 0.1 - 0.3
 #Assignment is find find out why
+## The reason this code did not output zero is because RStudio code is binary and not by decimal value. R recognized "0.1" and "0.3" as floating-point approximate numbers - thus returning the value of 5.551115e-17. This value is a mathmatical expression that represents 5.551115×10−17
 
 options(scripen = 999)
 
@@ -208,8 +221,12 @@ print (0.5, 20)
 
 What did you observe?
 
-> Answer:
+> Answer: When the code was ran the return product was:
+>
+> ```         
+> 5.551115e-17
+> ```
 
 Why do you think this is happening? (You can look online for help)
 
-> Answer:
+> Answer: The reason this code did not output zero is because R code is operating on binary values and not by decimal value. R recognized "0.1" and "0.3" as floating-point approximate numbers - thus returning the value of 5.551115e-17. This value is a mathmatical expression that represents 5.551115×10−17 and gives a rounding error.
