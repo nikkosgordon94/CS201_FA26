@@ -229,4 +229,6 @@ What did you observe?
 
 Why do you think this is happening? (You can look online for help)
 
-> Answer: The reason this code did not output zero is because R code is operating on binary values and not by decimal value. R recognized "0.1" and "0.3" as floating-point approximate numbers - thus returning the value of 5.551115e-17. This value is a mathmatical expression that represents 5.551115×10−17 and gives a rounding error.
+> Answer: The reason this code did not output zero is because R code is operating on binary values and not by decimal value. R recognized "0.1" and "0.3" as floating-point approximate numbers - thus returning the value of 5.551115e-17. This value is a mathematical expression that represents 5.551115×10−17 and gives a rounding error.
+>
+> \*Binary works with "base 2", anything dividable by 2
