@@ -213,7 +213,36 @@ ggplot(data = mtcars, aes(x = wt, y = hp)) +
        subtitle = "With Linedraw")
 ```
 
-## Exit Ticket
+```{r}
+library(plotly)
+
+ggplot(data = mtcars, aes(x = wt, y = hp)) +
+  geom_point() %>%
+  layout(title = "Interactive Scatter Plot of Weight vs Horsepower",
+         xaxis = list(title = "Weight"),
+         yaxis = list(title = "Horsepower"))
+
+```
+
+```{r}
+library(ggplot2)
+library(plotly)
+
+# Create a ggplot object
+p <- ggplot(data = mtcars, aes(x = wt, y = hp)) +
+  geom_point()
+
+# Convert to interactive plot with layout settings
+p_interactive <- ggplotly(p, 
+                          title = "Interactive Scatter Plot of Weight vs Horsepower",
+                          xaxis_title = "Weight",
+                          yaxis_title = "Horsepower")
+
+# Render the interactive plot in RStudio
+p_interactive
+```
+
+##  Exit Ticket
 
 Create a scatter plot and histogram of two variables of your choice (try to make it different from above). For your histogram, use `geom_histogram` and only assign an x variable in your `aes`.
 
