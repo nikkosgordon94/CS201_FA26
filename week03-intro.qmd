@@ -130,24 +130,26 @@ summary(mtcars)
 
 ?mtcars
 #brings up help tap and what data includes
+
+tail(mtcars)
 ```
 
 - 
 
   ## How many rows and columns are in the dataframe?
 
-- 32 Rows, 12 Columns
+- 32 Rows (observations), 12 Columns (variables)
 
   ## What are the variables you see?
 
-- 11 viables - mpg, wt
+- 11 viables - mpg, wt, hp, etc.
 
   #each row is observation
 
   ## How might you view the last few rows of the dataframe with a single function?
 
 ```{r}
-tail(mtcars, 10)
+tail(mtcars)
 ```
 
 ### Quick Questions
@@ -155,12 +157,15 @@ tail(mtcars, 10)
 - What is the average `mpg` overall?
 
 ```{r, warning=FALSE}
-
-mean(mtcars) 
-#wrong
+#Mean is a label
 
 mean(mtcars$mpg)
-#$ allows you to select var within datafram
+#$ allows you to select var within dataframe
+
+mean(mtcars$cyl)
+
+median(mtcars$hp)
+#Finds Median of variables
 ```
 
 - Can you find the mean of another variable?
@@ -169,6 +174,7 @@ mean(mtcars$mpg)
 
 mean(mtcars$wt)
 mean(mtcars$hp)
+mean(mtcars$qsec)
 ```
 
 - Can you find the median?
@@ -183,10 +189,23 @@ median(mtcars$hp)
 Make a scatter plot of `mtcars` with `weight` on the x-axis and `mpg` on the y-axis. Use what you learned last class!
 
 ```{r, warning=FALSE}
-# this is a scatterplot of mpg by wt
+# this is a scatterplot of wt by hp
 
 ggplot(data = mtcars, aes(x = wt, y = hp)) +
   geom_point()
+```
+
+```{r}
+ggplot(data = mtcars, aes(x = wt, y = hp)) +
+  geom_line() +
+  geom_point() +
+  theme_classic() +
+  labs(title = "Study of Weight vs Horsepower")
+
+#%>% is operator used to pass the current plot objective to layout function
+#Interactive scatterplot allows you to zoom, pan, and hover over data points
+
+
 ```
 
 ## Exit Ticket
