@@ -200,12 +200,17 @@ ggplot(data = mtcars, aes(x = wt, y = hp)) +
   geom_line() +
   geom_point() +
   theme_classic() +
-  labs(title = "Study of Weight vs Horsepower")
+  labs(title = "Study of Weight vs Horsepower",
+       subtitle = "With Line Plot")
 
 #%>% is operator used to pass the current plot objective to layout function
 #Interactive scatterplot allows you to zoom, pan, and hover over data points
 
-
+ggplot(data = mtcars, aes(x = wt, y = hp)) +
+  geom_area() +
+  theme_linedraw() +
+  labs(title = "Study of Area Weight vs Area Horsepower",
+       subtitle = "With Linedraw")
 ```
 
 ## Exit Ticket
