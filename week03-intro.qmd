@@ -242,7 +242,7 @@ p_interactive <- ggplotly(p,
 p_interactive
 ```
 
-##  Exit Ticket
+## Exit Ticket
 
 Create a scatter plot and histogram of two variables of your choice (try to make it different from above). For your histogram, use `geom_histogram` and only assign an x variable in your `aes`.
 
@@ -262,5 +262,9 @@ ggplot(data = mtcars, aes(x = am)) +
 mtcars <- mtcars |> 
   mutate(am_f = factor(am, labels = c("auto", "manual")))
 ```
+
+Local is on computer, remote is like cloud or dropbox
+
+Blame in github repository holds accountability of who changed code
 
 Save, stage, commit, and push to GitHub!!
