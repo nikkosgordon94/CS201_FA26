@@ -244,8 +244,10 @@ ggplot(data = penguins_data, aes(x = species, y = flipper_length_mm, fill = spec
   scale_fill_viridis_d(option = "magma", name = "Penguin Species") +
   theme_bw() +
   labs(title = "Flipper Length of Palmers Archipelago penguins",
-       subtitle = "Three species observed in Palmer Archipelago" +
-         theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1), legend .position = "none") +
+       subtitle = "Three species observed in Palmer Archipelago", 
+       x = "Flipper Length (mm)",
+       y = "Number of Penguins") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1, vjust = 1), legend.position = "none") +
          coord_flip()
 #Had to add x-axis to use geom point, use geom jitter instead to get rid of close clusters
 #Added scale fill and labs from above
@@ -274,7 +276,7 @@ Cool! Let's add species to this plot. What about islands
 ggplot(data = penguins_data, aes(x = culmen_depth_mm, color = species, shape = island)) +
   geom_histogram() +
   theme_bw() +
-  scale_fill_viridis_d(option = "iris") +
+  scale_fill_viridis_d(option = "plasma") +
   labs(title = "Flipper Length of Palmers Archipelago penguins",
        subtitle = "Three species observed in Palmer Archipelago",
        x = "Culmen Length (mm)",
