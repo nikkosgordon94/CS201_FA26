@@ -42,7 +42,7 @@ There are multiple options to read data into R
 ```{r, message=FALSE}
 
 penguins_data <- read_csv("data/penguins_lter.csv")
-#reads csv - csv is data fram
+#reads csv from laptop - csv is dataframe
 ```
 
 ### Option 2
@@ -67,11 +67,12 @@ raw_penguins_data_from_package <- palmerpenguins::penguins_raw
 url_penguins <- "https://raw.githubusercontent.com/abcamp/CS201_FA26/main/data/penguins_lter.csv"
 
 penguin_data_from_url <- read_csv(url_penguins)
-#can import dataframe from URL 
+
+#can import data frame from URL 
 #Scraping can be turned off to prevent URL link
 ```
 
-Note that all of these methods of reading data in to R are *reproducible* meaning that this script should work for anyone using the appropriate steps.
+NOTE: that all of these methods of reading data in to R are *reproducible* meaning that this script should work for anyone using the appropriate steps.
 
 ## A Little Data Cleaning
 
@@ -157,7 +158,7 @@ library(DataExplorer)
 
 # introduce(penguins_data)
 
-#?DataExplorer
+?DataExplorer
 
 plot_intro(penguins_data)
 
@@ -190,7 +191,7 @@ Cool! What if we color the histogram by species
 ggplot(data = penguins_data, aes(x = flipper_length_mm, fill = species)) +
   geom_histogram()
 #instead of fill can use color, color will outline
-#data show less grean penguins
+#data show less green penguins
 ```
 
 Interesting! Seems like flipper length is very dependent on species of penguin
@@ -202,13 +203,16 @@ The magic of `ggplot2` is simplicity and *customization* so let's customize, bas
 ```{r, message=FALSE, warning=FALSE}
 
 ggplot(data = penguins_data, aes(x = flipper_length_mm, fill = species)) +
-  geom_histogram(alpha = 0.5) +
+  geom_histogram(alpha = 0.35) +
   scale_fill_manual(values = c("darkorange", "darkorchid", "cyan4"), name = "Penguin Species") +
   theme_bw() + #Gets rid of gray, black and white
   labs(title = "Flipper Length of Palmers Archipelago penguins",
-       subtitle = "Three species observed in Palmer Archipelago") 
+       subtitle = "Three species observed in Palmer Archipelago",
+       x = "Flipper Length (mm)",
+       y = "Number of Penguins")
+  
 #sclae fill manual is to adjust the colors of current fill - manually insert
-#alpha = 0.5 adds transparency to visualization
+#alpha = 0.05, 0.25, 0.5, 0.75 adds transparency to visualization
 ```
 
 Manually choosing colors is cool, but there are also color palettes available for us with `viridis`
@@ -220,8 +224,14 @@ ggplot(data = penguins_data, aes(x = flipper_length_mm, fill = species)) +
   scale_fill_viridis_d(option = "magma", name = "Penguin Species") +
   theme_bw() +
   labs(title = "Flipper Length of Palmers Archipelago penguins",
-       subtitle = "Three species observed in Palmer Archipelago")
+       subtitle = "Three species observed in Palmer Archipelago",
+       x = "Flipper Length (mm)",
+       y = "Number of Penguins")
 
+#Color palettes for _a:
+#Color palettes for _b:
+#Color palettes for_c:
+#Color palettes for _d:
 ```
 
 Let's investigate flipper length with another type of data viz: a box plot!
@@ -258,9 +268,28 @@ Awesome! Let's take a look at flipper length and it's relationship to body mass
 ```{r, message=FALSE}
 
 ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
+  geom_point()
+
+ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color = species, shape = island)) +
   geom_point() +
   scale_shape_manual(values = c(2,4,15)) #changing scale of shape manually
+
+?scale_shape_manual
+?shape
+# A look at all 25 symbols
+df2 <- data.frame(x = 1:5 , y = 1:25, z = 1:25)
+p <- ggplot(df2, aes(x, y))
+p + geom_point(aes(shape = z), size = 4) +
+  scale_shape_identity()
+
+# background colour (fill)
+p + geom_point(aes(shape = z), size = 4, colour = "Red") +
+  scale_shape_identity()
+p + geom_point(aes(shape = z), size = 4, colour = "Red", fill = "Black") +
+  scale_shape_identity()
+
 #color is used for shapes 
+#scale shape values range from 1 to 24, 
 ```
 
 Cool! Let's add species to this plot. What about islands
@@ -273,7 +302,7 @@ Cool! Let's add species to this plot. What about islands
 
 ```{r, message=FALSE, warning=FALSE}
 
-ggplot(data = penguins_data, aes(x = culmen_depth_mm, color = species, shape = island)) +
+ggplot(data = penguins_data, aes(x = culmen_depth_mm, fill = species)) +
   geom_histogram() +
   theme_bw() +
   scale_fill_viridis_d(option = "plasma") +
