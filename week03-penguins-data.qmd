@@ -329,10 +329,10 @@ ggplot(data = penguins_data, aes(x = culmen_depth_mm, fill = species)) +
 ?geom_smooth
 
 ggplot(data = penguins_data, aes(x = culmen_depth_mm, y = body_mass_g, color = species)) +
-  geom_point(alpha = .5) +
+  geom_point() +
   geom_smooth() +
   theme_bw() +
-  scale_fill_viridis_d(option = "plasma") +
+  scale_fill_viridis_d(option = "turbo", name = "Species") +
   labs(title = "Flipper Length of Palmers Archipelago penguins",
        subtitle = "Three species observed in Palmer Archipelago",
        x = "Culmen Length (mm)",
@@ -355,13 +355,13 @@ ggplot(data = penguins_data, aes(x = culmen_depth_mm, y = body_mass_g, color = s
 # Load the libraries
 library(ggplot2)
 library(plotly)
-p <- ggplot(data = penguins_data, aes(x = sample_number, y = body_mass_g, color = species)) +
+p <- ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
   geom_point(alpha = .65) +
   theme_bw() +
   scale_fill_viridis_d(option = "plasma") +
   labs(title = "Flipper Length of Palmers Archipelago penguins",
        subtitle = "Three species observed in Palmer Archipelago",
-       x = "Sample Number of Penguins",
+       x = "Flipper Length of Penguins by Species",
        y = "Weight of Penguins in Gram")
 ggplotly(p)
 ```
