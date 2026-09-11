@@ -275,13 +275,7 @@ ggplot(data = penguins_data, aes(x = flipper_length_mm, y = body_mass_g, color =
   scale_shape_manual(values = c(2,4,15)) #changing scale of shape manually
 
 ?scale_shape_manual
-<<<<<<< HEAD
 
-?shape
-
-=======
-?shape
->>>>>>> 0a664de953c7dbc1839ad13364cf0fa664874f17
 # A look at all 25 symbols
 df2 <- data.frame(x = 1:5 , y = 1:25, z = 1:25)
 p <- ggplot(df2, aes(x, y))
