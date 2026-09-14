@@ -143,7 +143,8 @@ How about if we wanted to make a bar graph of the *average body mass by species*
 
 average_mass <- biological_sex |> 
   group_by(species) |> 
-  summarise(average_mass = mean(body_mass_g))
+  summarise(average_mass = mean(body_mass_g, na.rm = TRUE))
+#"na.rm = TRUE" removed NAs
 #Created two columns(av.mass/species) and 3 rows(different species)
 #Summarize assignment does not have to match initial assignment, can be different name
 #group by selective data for group, follow with mutate, summarize, etc
@@ -224,12 +225,15 @@ How many penguins live on each `island`? This one is a little tricky–think out
 ```{r, message=FALSE}
 #| label: count penguins
 
-?summary
-?geom_area
-ggplot(data = biological_sex, aes(x = species, y = island)) +
-  
-summary(biological_sex$island)
+table(biological_sex$island)
+#type 1
+library(tidyverse)
+biological_sex |> 
+  count(island)
+#type 2
 
+
+length(unique(biological_sex$individual_id)) #shows 
 ```
 
 ## Exercise 4
