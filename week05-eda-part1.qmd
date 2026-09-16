@@ -212,7 +212,7 @@ ggplot(pokedata, aes(x = sp_atk)) +
 Notice that this histogram is showing you the same information you just calculated (center, spread, skew) but as a *shape* instead of as numbers.
 
 **Question!** What is the difference between a histogram and a bar chart?\
-Answer:
+Answer: Bar chart is a normal chart with bar variables, it doesn't show the differences through a value or series of variables. In a Histogram the information shows the progression of variable differences and connects values
 
 ```{r, message=FALSE}
 #| label: bar chart
