@@ -92,6 +92,7 @@ data2 <- penguins |>
          delta_15_n_o_oo,
          delta_13_c_o_oo)
 
+#could do select(-comment) as well
 ```
 
 ## 5. `relocate()`
@@ -129,7 +130,7 @@ Copy `penguins` to a new object called `mutate` and add a column that displays f
 ```{r, message=FALSE, warning=FALSE}
 
 data5 <- penguins |>
-  mutate(flipper_length_km = flipper_length_mm / 1000) |> 
+  mutate(flipper_length_km = flipper_length_mm / 1e6) |> 
   rename(flippometer = flipper_length_km)
 ```
 
@@ -159,7 +160,9 @@ glimpse(penguins)
 data6 <- penguins |> 
   group_by(species) |> 
   filter(island == "Biscoe") |> 
-  summarize(across(where(is.numeric), max))
+  summarize(across(where(is.numeric), max, na.rm = TRUE))
+
+view(across)
 ```
 
 ## 10. `count()`
@@ -178,6 +181,8 @@ Starting with `penguins`, create a new object called `count` that filters out al
 count <- penguins|> 
   filter(!sex %in% c("FEMALE", "MALE")) |> 
   count(island, species, sex)
+
+view(count)
 ```
 
 ## 11. `case_when()`
@@ -199,6 +204,7 @@ casesize <- penguins |>
     )
   )
 summary(as.factor(casesize$size))
+#if else is fork, case when defines each category
 ```
 
 ## 12. Final Boss 🐧 (up to 2.5 pts extra credit)
