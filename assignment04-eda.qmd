@@ -30,23 +30,25 @@ Part 1 is worth a total of 1 point, and Part 2 is worth 4 points (1 point for ea
 ```{r, message=FALSE}
 library(tidyverse)
 
-# mydata <- read_csv("data/your_dataset.csv")
+GlobalSecurityThreats <- read_csv("data/GST_2015-2024.csv")
 
 ```
 
 ### Describe your data
 
-Data author:
+Data author: Atharva Soundankar
 
-Link:
+Link: 🌐 Global Cybersecurity Threats (2015-2024)
 
-Description:
+Description: The Global Cyber security Threats Data set (2015-2024) provides in depth exploration on various cyber attacks, types of Malware's used, what industries were targeted, and the affected countries of the attacks. This data set is used for threat intelligence analysis and to assist in AI Machine Learning development to enhance global security in the field of cyber intrusion.
 
 ### Preview your data
 
 Use some of the strategies you've learned in this class or picked up elsewhere to summarize and quickly explore your data.
 
 ```{r}
+#view the data in a seperate tab
+view(GlobalSecurityThreats)
 
 ```
 
