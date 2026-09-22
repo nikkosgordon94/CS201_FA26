@@ -38,7 +38,7 @@ GlobalSecurityThreats <- read_csv("data/GST_2015-2024.csv")
 
 Data author: Atharva Soundankar
 
-Link: 🌐 Global Cybersecurity Threats (2015-2024)
+Link: https://www.kaggle.com/datasets/atharvasoundankar/global-cybersecurity-threats-2015-2024
 
 Description: The Global Cyber security Threats Data set (2015-2024) provides in depth exploration on various cyber attacks, types of Malware's used, what industries were targeted, and the affected countries of the attacks. This data set is used for threat intelligence analysis and to assist in AI Machine Learning development to enhance global security in the field of cyber intrusion.
 
@@ -65,7 +65,35 @@ Before you make plots, you must also:
   - Remember to use `na.rm = TRUE` if you have missing values that affect summaries!
 
 ```{r}
+#load tidyverse package
+library(tidyverse)
 
+#show a basic summary of dataframe
+summary(GlobalSecurityThreats)
+
+#Count frequncy of variables
+GlobalSecurityThreats |>  
+  count(`Attack Source`)
+GlobalSecurityThreats |> 
+  count(`Attack Type`)
+
+#show head of data - 10 rows
+head(GlobalSecurityThreats, n = 10)
+
+#Mean of financial loss in $
+mean(GlobalSecurityThreats$`Financial Loss (in Million $)`, na.rn = TRUE)
+
+#median of finaincial loss in $
+median(GlobalSecurityThreats$`Financial Loss (in Million $)`, na.rn = TRUE)
+
+#Standard Deviation from loss in $
+sd(GlobalSecurityThreats$`Financial Loss (in Million $)`)
+
+#Minimum loss of $
+min(GlobalSecurityThreats$`Financial Loss (in Million $)`, na.rn = TRUE)
+
+#maximim loss of $
+max(GlobalSecurityThreats$`Financial Loss (in Million $)`, na.rn = TRUE)
 ```
 
 Write 2–3 sentences here: What do the category counts tell you? What does the numeric summary show about spread, center, or outliers?
