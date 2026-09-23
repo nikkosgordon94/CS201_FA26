@@ -1,6 +1,6 @@
 ---
 title: "Assignment 4: Exploratory Data Analysis"
-author: "Your Name"
+author: "Nikkos Miyasato"
 date: "`r Sys.Date()`"
 format: html
 editor: visual
@@ -28,7 +28,12 @@ Part 1 is worth a total of 1 point, and Part 2 is worth 4 points (1 point for ea
 4.  Read it into R with `read_csv()`.
 
 ```{r, message=FALSE}
+#load necessary packages
 library(tidyverse)
+library(janitor)
+library(ggplot2)
+library(plotly)
+library(dplyr)
 
 #read dataframe
 GlobalSecurityThreats <- read_csv("data/GST_2015-2024.csv")
@@ -36,6 +41,7 @@ GlobalSecurityThreats <- read_csv("data/GST_2015-2024.csv")
 #clean names so data is easier to work with
 GlobalSecurityThreats <- GlobalSecurityThreats |> 
   clean_names()
+
 ```
 
 ### Describe your data
@@ -69,11 +75,6 @@ Before you make plots, you must also:
   - Remember to use `na.rm = TRUE` if you have missing values that affect summaries!
 
 ```{r}
-#load package
-library(tidyverse)
-library(janitor)
-library(ggplot2)
-library(plotly)
 
 #show a basic summary of dataframe
 summary(GlobalSecurityThreats)
@@ -125,27 +126,38 @@ Use the EDA Part 3 notes as your reference. Since this is an EDA assignment, you
 
 ```{r}
 country_attacked <- ggplot(data = GlobalSecurityThreats, 
-                           aes(x = country, y = number_of_affected_users)) +
+                           aes(x = number_of_affected_users, y = country,
+                               color = incident_resolution_time_in_hours)) +
   geom_point() +
+  theme_bw() +
   labs(title = "Scatter Plot of Country Attacked",
        x = "Number of Attacks",
-       y = "Country's Attacked")
+       y = "Country's Attacked",
+       color = "Time in Hours")
 
-ggplotly(users_attacked)
+ggplotly(country_attacked)
 ```
 
-Question this plot answers:
+**Question this plot answers:** What is the frequency of attacks a country received from the report, and how long was the attack active?
 
-Interpretation:
+Interpretation: There is variance in the time each attack had lapsed within each country. They range from approximately 10 hours in length to approximately 60 hours in length. The majority of attacks when scrutinized appear to be commonplace in the 0-40 range
 
 ### Plot 2
 
 ```{r}
-# insert code here
+boxgraph <- ggplot(data = GlobalSecurityThreats, 
+       aes (x = year, y = target_industry, fill = country))+
+  geom_boxplot() +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 50, hjust = 1)) +
+  labs(title = "Boxplot of Target Industry",
+       x-axis = "Target Industry",
+       y-axis = )
 
+ggplotly(boxgraph)
 ```
 
-Question this plot answers:
+**Question this plot answers:** In the years if this study what were the target industries that were affected by each country?
 
 Interpretation:
 
