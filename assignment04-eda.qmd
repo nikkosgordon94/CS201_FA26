@@ -30,17 +30,21 @@ Part 1 is worth a total of 1 point, and Part 2 is worth 4 points (1 point for ea
 ```{r, message=FALSE}
 library(tidyverse)
 
+#read dataframe
 GlobalSecurityThreats <- read_csv("data/GST_2015-2024.csv")
 
+#clean names so data is easier to work with
+GlobalSecurityThreats <- GlobalSecurityThreats |> 
+  clean_names()
 ```
 
 ### Describe your data
 
-Data author: Atharva Soundankar
+**Data author:** Atharva Soundankar
 
-Link: https://www.kaggle.com/datasets/atharvasoundankar/global-cybersecurity-threats-2015-2024
+**Link:** https://www.kaggle.com/datasets/atharvasoundankar/global-cybersecurity-threats-2015-2024
 
-Description: The Global Cyber security Threats Data set (2015-2024) provides in depth exploration on various cyber attacks, types of Malware's used, what industries were targeted, and the affected countries of the attacks. This data set is used for threat intelligence analysis and to assist in AI Machine Learning development to enhance global security in the field of cyber intrusion.
+**Description:** The Global Cyber security Threats Data set (2015-2024) provides in depth exploration on various cyber attacks, types of Malware's used, what industries were targeted, and the affected countries of the attacks. This data set is used for threat intelligence analysis and to assist in AI Machine Learning development to enhance global security in the field of cyber intrusion.
 
 ### Preview your data
 
@@ -65,38 +69,43 @@ Before you make plots, you must also:
   - Remember to use `na.rm = TRUE` if you have missing values that affect summaries!
 
 ```{r}
-#load tidyverse package
+#load package
 library(tidyverse)
+library(janitor)
+library(ggplot2)
+library(plotly)
 
 #show a basic summary of dataframe
 summary(GlobalSecurityThreats)
 
 #Count frequncy of variables
 GlobalSecurityThreats |>  
-  count(`Attack Source`)
+  count("attack_source")
 GlobalSecurityThreats |> 
-  count(`Attack Type`)
+  count("attack_type")
 
 #show head of data - 10 rows
 head(GlobalSecurityThreats, n = 10)
 
-#Mean of financial loss in $
-mean(GlobalSecurityThreats$`Financial Loss (in Million $)`, na.rn = TRUE)
+#mean of financial loss in $
+mean(GlobalSecurityThreats$"financial_loss_in_million", na.rn = TRUE)
 
 #median of finaincial loss in $
-median(GlobalSecurityThreats$`Financial Loss (in Million $)`, na.rn = TRUE)
+median(GlobalSecurityThreats$"financial_loss_in_million", na.rn = TRUE)
 
 #Standard Deviation from loss in $
-sd(GlobalSecurityThreats$`Financial Loss (in Million $)`)
+sd(GlobalSecurityThreats$"financial_loss_in_million")
 
 #Minimum loss of $
-min(GlobalSecurityThreats$`Financial Loss (in Million $)`, na.rn = TRUE)
+min(GlobalSecurityThreats$"financial_loss_in_million", na.rn = TRUE)
 
 #maximim loss of $
-max(GlobalSecurityThreats$`Financial Loss (in Million $)`, na.rn = TRUE)
+max(GlobalSecurityThreats$"financial_loss_in_million", na.rn = TRUE)
 ```
 
 Write 2–3 sentences here: What do the category counts tell you? What does the numeric summary show about spread, center, or outliers?
+
+**ANSWER:** In count, I've chosen to pull data from Attack Source (amount of attacks via sources) and Attack Type (amount of specified attacks). I've noticed that despite removing the na variables there is still a slight variance from Mean and Median - 50.49297 vs 50.795. There is also a high Standard Deviation in loss of \$ by 28 million.
 
 ## Part 2: Visualize Your Data
 
@@ -115,8 +124,14 @@ Use the EDA Part 3 notes as your reference. Since this is an EDA assignment, you
 ### Plot 1
 
 ```{r}
-# insert code here
+country_attacked <- ggplot(data = GlobalSecurityThreats, 
+                           aes(x = country, y = number_of_affected_users)) +
+  geom_point() +
+  labs(title = "Scatter Plot of Country Attacked",
+       x = "Number of Attacks",
+       y = "Country's Attacked")
 
+ggplotly(users_attacked)
 ```
 
 Question this plot answers:
