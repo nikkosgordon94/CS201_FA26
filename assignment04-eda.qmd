@@ -42,6 +42,8 @@ GlobalSecurityThreats <- read_csv("data/GST_2015-2024.csv")
 GlobalSecurityThreats <- GlobalSecurityThreats |> 
   clean_names()
 
+GlobalSecurityThreats$incident_resolution_time_in_hours <- 
+  as.numeric(GlobalSecurityThreats$incident_resolution_time_in_hours)
 ```
 
 ### Describe your data
@@ -140,32 +142,37 @@ ggplotly(country_attacked)
 
 **Question this plot answers:** What is the frequency of attacks a country received from the report, and how long was the attack active?
 
-Interpretation: There is variance in the time each attack had lapsed within each country. They range from approximately 10 hours in length to approximately 60 hours in length. The majority of attacks when scrutinized appear to be commonplace in the 0-40 range
+**Interpretation:** There is variance in the time each attack had lapsed within each country. They range from approximately 10 hours in length to approximately 60 hours in length. The majority of attacks when scrutinized appear to be commonplace in the 0-40 range
 
 ### Plot 2
 
 ```{r}
 boxgraph <- ggplot(data = GlobalSecurityThreats, 
-       aes (x = year, y = target_industry, fill = country))+
+                   aes(x = year, y = target_industry, fill = country)) +
   geom_boxplot() +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 50, hjust = 1)) +
   labs(title = "Boxplot of Target Industry",
-       x-axis = "Target Industry",
-       y-axis = )
+       x = "Year",
+       y = "Target Industry")
 
+# Print the plot
 ggplotly(boxgraph)
 ```
 
 **Question this plot answers:** In the years if this study what were the target industries that were affected by each country?
 
-Interpretation:
+Interpretation: For each country there I some field that was targeted
 
 ### Plot 3
 
 ```{r}
-# insert code here
+bar_graph <- ggplot(data = GlobalSecurityThreats, 
+                   aes(x = attack_source, fill = country)) +
+  geom_bar() +
+  theme_bw()
 
+ggplotly(bar_graph)
 ```
 
 Question this plot answers:
@@ -176,7 +183,8 @@ Interpretation:
 
 ```{r}
 # insert code here
-
+frequency_graph <- ggplot(data = GlobalSecurityThreats, aes(x = country, y = incident_resolution_time_in_hours)) +
+  geom_freqpoly()
 ```
 
 Question this plot answers:

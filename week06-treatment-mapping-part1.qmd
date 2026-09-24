@@ -213,18 +213,28 @@ Apply the relevant recoding for the Reason for Discharge variable.
 
 ```{r}
 #| label: variable-recoding-reason
+class(teds_d$reason)
+#look at this variable; check class
+summary(teds_d$reason)
+#summary of data frame
 
-teds_d <- teds_d |> 
-  mutate(services_d = recode(as.character(los), #categorical
-                             "1" = "",
-                             "2" = "24hr Detox, Free-standing",
-                             "3" = "Rehab/Residential,Non-Detox",
-                             "4" = "Rehab/Residential, >30 Days",
-                             "5" = "Rehab/Resiential, <30 Days",
-                             "6" = "Ambulatory, Intensive O/P",
-                             "7" = "Ambulatory, Non-intensive O/P",
-                             "8" = "Abulatory, Detox"),
-         services_d = factor(los))
+teds_d <- teds_d %>%
+  mutate(reason = recode(as.character(reason),
+                         "1" = "Treatment completed",
+                         "2" = "Dropped out of treatment",
+                         "3" = "Terminated by facility",
+                         "4" = "Transferred to another treatment program or facility",
+                         "5" = "Incarcerated",
+                         "6" = "Death",
+                         "7" = "Other",
+                         .missing = "unknown"),
+         reason = factor(reason))
+
+# "Turn the codes into text, swap each code for its label (and call missing ones 'unknown'),
+# then treat the result as a category (factor)."
+
+teds_d %>% 
+  tabyl(reason) 
 ```
 
 ## Quick Plotting Exercise
