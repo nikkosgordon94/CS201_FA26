@@ -156,7 +156,6 @@ boxgraph <- ggplot(data = GlobalSecurityThreats,
        x = "Year",
        y = "Target Industry")
 
-# Print the plot
 ggplotly(boxgraph)
 ```
 
@@ -183,8 +182,13 @@ Interpretation:
 
 ```{r}
 # insert code here
-frequency_graph <- ggplot(data = GlobalSecurityThreats, aes(x = country, y = incident_resolution_time_in_hours)) +
-  geom_freqpoly()
+violin_graph <-    ggplot(data = GlobalSecurityThreats, aes(x = security_vulnerability_type, y = incident_resolution_time_in_hours)) +
+  geom_violin() +
+  theme_bw()+
+  labs(title = "Violin Graph" +
+         x = "")
+
+ggplotly(violin_graph)
 ```
 
 Question this plot answers:
