@@ -140,9 +140,9 @@ country_attacked <- ggplot(data = GlobalSecurityThreats,
 ggplotly(country_attacked)
 ```
 
-**Question this plot answers:** What is the frequency of attacks a country received from the report, and how long was the attack active?
+**Question this plot answers:** What is the frequency of attacks a country received from the report, and how long were the attack active?
 
-**Interpretation:** There is variance in the time each attack had lapsed within each country. They range from approximately 10 hours in length to approximately 60 hours in length. The majority of attacks when scrutinized appear to be commonplace in the 0-40 range
+**Interpretation:** There is variance in the time each attack had lapsed within each country. They range from approximately 10 hours in length to approximately 60 hours in length. The majority of attacks when scrutinized appear to be commonplace in the 0-40 range.
 
 ### Plot 2
 
@@ -161,7 +161,7 @@ ggplotly(boxgraph)
 
 **Question this plot answers:** In the years if this study what were the target industries that were affected by each country?
 
-Interpretation: For each country there I some field that was targeted
+**Interpretation:** For each country there is some field that was targeted more often across the span of 8 years - paramount was USA. USA has a consistent target in IT, Healthcare, and Government of each 2 1/2 year span. By interacting with the plot, I've also determines that Healthcare is the target industry that has the most attacks between all countries listed.
 
 ### Plot 3
 
@@ -169,31 +169,35 @@ Interpretation: For each country there I some field that was targeted
 bar_graph <- ggplot(data = GlobalSecurityThreats, 
                    aes(x = attack_source, fill = country)) +
   geom_bar() +
-  theme_bw()
+  theme_bw() +
+  labs(title = "Bar Graph of Attack Sources",
+       subtitle = "Colored by Country",
+       x = "Attack Sources",
+       y = "Total Count with Color ID")
 
 ggplotly(bar_graph)
 ```
 
-Question this plot answers:
+**Question this plot answers:** What are the number of attacks by country through each attack source?
 
-Interpretation:
+**Interpretation:** Each attack source has carried out at least 600 attacks with a various quantity in different country's ranging as low as 60 in a country to as high as 92. This visual representation also shows Nation-States were the source that had more attacks used than even hacker groups.
 
 ### Plot 4
 
 ```{r}
-# insert code here
-violin_graph <-    ggplot(data = GlobalSecurityThreats, aes(x = security_vulnerability_type, y = incident_resolution_time_in_hours)) +
-  geom_violin() +
+count_graph <-    ggplot(data = GlobalSecurityThreats, aes(x = incident_resolution_time_in_hours, y = security_vulnerability_type)) +
+  geom_count() +
   theme_bw()+
-  labs(title = "Violin Graph" +
-         x = "")
+  labs(title = "Count Graph of Time vs. Vulnerability Type",
+         x = "Time of Incident in Hours",
+       y = "Vulnerability Type")
 
-ggplotly(violin_graph)
+ggplotly(count_graph)
 ```
 
-Question this plot answers:
+**Question this plot answers:** For each vulnerability type, what is the elapsed time in hours for the incident?
 
-Interpretation:
+**Interpretation:** I noticed that this graph has a cap or 72 hours, yet the n value varies - social engineering begins at n=13, unpatched software at n=2, weak passwords at n=4, and zero-day at 10. I found this perplexing and from checking I realized "n" is recognized as a count from this specific plot. My interpretation of that is the amount of incidents are also correlating to the amount of time elapsed. If i hover over 20 for time there are then 12 occurrences of that vulnerability type.
 
 ------------------------------------------------------------------------
 
